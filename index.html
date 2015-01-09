@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+
+<style>
+
+body{ 
+}
+#div1 { 
+    height: 125px;
+    width: 150px;
+    margin: 25px; 
+    -webkit-perspective: 150px; /* Chrome, Safari, Opera  */
+    perspective: 150px;
+    float:left; 
+}
+
+#div2 { 
+    position: absolute;  
+    -webkit-transform: rotateY(15deg); /* Chrome, Safari, Opera  */
+    transform: rotateY(15deg); 
+    border:3px solid #fff;
+    border-left:6px solid #fff;
+    height: 150px;
+
+    -webkit-box-shadow: -5px -6px 6px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: -5px -6px 6px -2px rgba(0,0,0,0.75);
+    box-shadow: -5px -6px 6px -2px rgba(0,0,0,0.75);
+    transition: all 0.5s ease-in-out 0s;
+}
+
+#div2:hover{
+    -webkit-transform: rotateY(0deg); /* Chrome, Safari, Opera  */
+    transform: rotateY(0deg); 
+    border-left:3px solid #fff;
+}
+
+
+.clear{
+    margin:0;
+    padding:0;
+    clear:both;
+}
+
+
+.stage{
+    width:900px;
+    height:600px;
+    border:1px solid #000;
+    margin:100px;
+    margin-left:100px;
+    background-image: url(AAAAC9c9Nv0AAAAAAD_zNw.jpg);
+
+}
+
+.cauch{
+    height: 320px;
+    margin-left: 25px;
+    margin-top: 302px;
+    position: absolute;
+    width: 656px;
+}
+
+.paining_wrapper{
+    float:left;
+    width:700px;
+    margin-top:20px;
+}
+.painting{
+    width:150px;
+    height:100px;
+    margin:auto;
+    
+    -webkit-box-shadow: 2px 1px 19px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 1px 19px -3px rgba(0,0,0,0.75);
+    box-shadow: 2px 1px 19px -3px rgba(0,0,0,0.75);
+    transition: all 0.5s ease-in-out 0s;
+
+    background: url( paper-seamless-background.jpg) 0 0;
+
+    cursor:pointer;
+}
+ 
+
+.right-cal{
+    float:right;
+    padding:10px;
+    width: 180px;
+    height: 580px;
+
+    background-color: #fcfcfc;
+      -webkit-box-shadow: -17px 0px 13px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: -17px 0px 13px -7px rgba(0,0,0,0.75);
+    box-shadow: -17px 0px 13px -7px rgba(0,0,0,0.75);
+}
+
+.right-cal label{
+    cursor:pointer;
+}
+
+.border1{
+    border:0;
+}
+.border2{
+    border: 15px solid transparent; 
+
+    -webkit-border-image:url(border2.png) 30 30 round; /* Safari 3.1-5 */
+    -o-border-image:url(border2.png) 30 30 round; /* Opera 11-12.1 */
+    border-image:url(border2.png) 30 30 round;
+}
+
+</style>
+</head>
+<body>
+
+
+
+<div class="stage">
+    <div class="paining_wrapper">
+        <div class="painting"> 
+             <img id="thumbnil" width="100%" height="100%"   src="" alt="" />
+        </div>    
+    </div>
+    <div class="cauch"><img src="couch.png" id="thumbnil" ></div>
+
+    <div class="right-cal">
+        <input type="file" accept="image/*"  onchange="showMyImage(this)" id="uploaderInput" style="display:none;"/>
+        
+        <label for="150x100">150x100
+            <input type="radio" value="150x100" name="sizes[]" id="150x100" checked="true">
+        </label>
+        <br>
+        <label for="300x200">300x200 
+            <input type="radio" value="300x200" name="sizes[]" id="300x200">
+        </label>
+        <br>
+        <label for="500x250">500x250 
+            <input type="radio" value="500x250" name="sizes[]" id="500x250">
+        </label>
+        <br>
+
+        <hr>
+
+        <label for="border1">No frame
+            <input type="radio" value="border1" name="border[]" id="border1" checked="true">
+        </label>    
+        <br>
+        <label for="border2">With frame
+            <input type="radio" value="border2" name="border[]" id="border2">
+        </label>
+    </div>
+</div>
+
+
+<div class="clear"></div>
+
+
+<div id="div1">
+  <div id="div2"><img src="18c7711.jpg" width="150px"></div>
+</div>
+ 
+<div id="div1">
+  <div id="div2"><img src="18c7711.jpg" width="150px"></div>
+</div>
+
+<div id="div1">
+  <div id="div2"><img src="18c7711.jpg" width="150px"></div>
+</div>
+
+<div id="div1">
+  <div id="div2"><img src="18c7711.jpg" width="150px"></div>
+</div>  
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+<script type="text/javascript">
+
+
+
+$("[name='sizes[]']").click(function(index){
+     var val = $(this).val().split('x');
+
+     $('.painting').css("width", val[0] + "px");
+     $('.painting').css("height", val[1] + "px");
+     
+});
+
+$("[name='border[]']").click(function(index){
+     var frame = $(this).val();
+      
+     $('.painting').attr('class','painting ' + frame);
+      
+});
+
+    
+
+$('.painting').click(function(index){
+    $('#uploaderInput').click();
+});
+
+
+
+
+ function showMyImage(fileInput) {
+        var files = fileInput.files;
+        for (var i = 0; i < files.length; i++) {           
+            var file = files[i];
+            var imageType = /image.*/;     
+            if (!file.type.match(imageType)) {
+                continue;
+            }           
+            var img=document.getElementById("thumbnil");            
+            img.file = file;    
+            var reader = new FileReader();
+            reader.onload = (function(aImg) { 
+                return function(e) { 
+                    aImg.src = e.target.result; 
+                }; 
+            })(img);
+            reader.readAsDataURL(file);
+        }    
+    }
+
+</script>
+</body>
+</html>
